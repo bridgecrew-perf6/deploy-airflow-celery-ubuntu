@@ -9,10 +9,14 @@ function msg {
   echo -e "${green}$(date): ${yellow}$1${nc}"
 }
 
-source ../secrets.sh
+source $HOME/deploy-airflow-celery-ubuntu/secrets.sh
 msg "${$UBUNTU_USER}"
 adduser $UBUNTU_USER
 usermod -aG sudo $UBUNTU_USER
 
-
+# sync ssh keys from root to newly created users
 rsync --archive --chown=$UBUNTU_USER:$UBUNTU_USER ~/.ssh /home/$UBUNTU_USER
+
+
+# sync secrets from local to server 
+# rsync -e ssh secrets.sh user@host:deploy-airflow-celery-ubuntu/
