@@ -13,3 +13,6 @@ source ../secrets.sh
 msg "${$UBUNTU_USER}"
 adduser $UBUNTU_USER
 usermod -aG sudo $UBUNTU_USER
+
+
+rsync --archive --chown=$UBUNTU_USER:$UBUNTU_USER ~/.ssh /home/$UBUNTU_USER
