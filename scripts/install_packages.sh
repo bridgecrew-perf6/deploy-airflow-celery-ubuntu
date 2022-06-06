@@ -1,8 +1,5 @@
 #!/bin/bash
 
-RESET='\033[0m'
-COLOR='\033[1;32m'
-
 nc=$(echo -en '\033[0m')
 red=$(echo -en '\033[00;31m')
 green=$(echo -en '\033[00;32m')
