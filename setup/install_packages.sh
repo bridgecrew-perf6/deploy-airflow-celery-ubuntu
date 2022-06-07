@@ -26,11 +26,15 @@ msg "Ubuntu update & upgrade"
 sudo apt update -y || fail
 sudo apt upgrade -y || fail
 
+msg "Build"
+sudo apt-get install gcc -y || fail
+
 msg "Python"
 sudo apt install -y python3-pip -y || fail
 sudo apt install python3-dev -y || fail
 sudo apt install -y python3-venv -y || fail
 sudo apt install python3-lib2to3 -y || fail
+sudo apt install python3-wheel -y || fail
 
 
 # basic
