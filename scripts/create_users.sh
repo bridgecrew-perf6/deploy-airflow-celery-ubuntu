@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/do-community/automated-setups/master/Ubuntu-18.04/initial_server_setup.sh
-
 nc=$(echo -en '\033[0m')
 red=$(echo -en '\033[00;31m')
 green=$(echo -en '\033[00;32m')
@@ -11,7 +9,8 @@ function msg {
   echo -e "${green}$(date): ${yellow}$1${nc}"
 }
 
-#!/bin/bash
+# SCRIPT FROM DO-COMMUNITY:
+# https://raw.githubusercontent.com/do-community/automated-setups/master/Ubuntu-18.04/initial_server_setup.sh
 set -euo pipefail
 
 ########################
@@ -19,9 +18,8 @@ set -euo pipefail
 ########################
 
 # Name of the user to create and grant sudo privileges
-source $HOME/deploy-airflow-celery-ubuntu/secrets.sh
-USERNAME=$UBUNTU_USER
-msg "${USERNAME}"
+USERNAME="airflow"
+msg "Creating user: ${USERNAME}"
 
 # Whether to copy over the root user's `authorized_keys` file to the new sudo
 # user.

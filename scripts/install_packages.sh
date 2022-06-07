@@ -23,8 +23,8 @@ function mcd {
 msg "------------- PACKAGES INSTALLATION --------------------------"
 
 msg "Ubuntu update & upgrade"
-# sudo apt update -y || fail
-# sudo apt upgrade -y || fail
+sudo apt update -y || fail
+sudo apt upgrade -y || fail
 
 msg "Python"
 sudo apt install -y python3-pip -y || fail
@@ -52,7 +52,7 @@ sudo apt install libffi-dev -y || fail # A Portable Foreign Function Interface L
 # sudo apt install libpq-dev -y # C application programmer's interface to PostgreSQL
 # sudo apt install default-libmysqlclient-dev -y
 # sudo apt install apt-utils -y # less used command line utilities related to APT
-# sudo apt install locales -y
+# sudo apt install locales -y # translations
 
 msg "Postgres"
 sudo apt install postgresql postgresql-contrib -y || fail
