@@ -26,6 +26,7 @@ msg "Airflow version: ${airflow_version}"
 msg "AIRFLOW_HOME: ${AIRFLOW_HOME}"
 
 msg "Airflow db init"
+# airflow db reset
 airflow db init
 
 

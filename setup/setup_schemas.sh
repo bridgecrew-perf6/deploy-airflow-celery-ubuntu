@@ -35,9 +35,18 @@ source $HOME/deploy-airflow-celery-ubuntu/env_vars.sh
 
 # EOF
 msg "POSTGRES_USERNAME: ${POSTGRES_USERNAME}"
+
+# psql "postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}" << EOF
+# DROP SCHEMA ${POSTGRES_SCHEMA} CASCADE;
+# CREATE SCHEMA ${POSTGRES_SCHEMA};
+# GRANT ALL ON SCHEMA  ${POSTGRES_SCHEMA} TO ${POSTGRES_USERNAME};
+# ALTER USER ${POSTGRES_USERNAME} SET search_path = ${POSTGRES_SCHEMA};
+# EOF
+
 psql "postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}" << EOF
-CREATE SCHEMA ${POSTGRES_SCHEMA};
+DROP SCHEMA public CASCADE;
 EOF
+
 
 # psql "postgresql://doadmin:your_password@cluster-do-user-1234567-0.db.ondigitalocean.com:25060/defaultdb?sslmode=require"
 
@@ -48,8 +57,9 @@ EOF
 # )
 # EOF
 
-# DROP SCHEMA $POSTGRES_SCHEMA;
-# CREATE SCHEMA $POSTGRES_SCHEMA;
+
+
+
 # GRANT ALL ON SCHEMA omni_mlops_local_lposada_1dd07ad7c9ea46a99ce927b55df1cfd1_aif TO luis_posada;
 # ALTER USER luis_posada SET search_path = omni_mlops_local_lposada_1dd07ad7c9ea46a99ce927b55df1cfd1_aif;
 
