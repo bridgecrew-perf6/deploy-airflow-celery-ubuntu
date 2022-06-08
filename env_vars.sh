@@ -21,14 +21,24 @@ AIRFLOW_HOME="${HOME}/airflow"
 export AIRFLOW_HOME
 msg "airflow_home:" $AIRFLOW_HOME
 
-# DAGS FOLDER
-OMAR_HOME="${HOME}/omni/dev/ds-modeling"
-AIRFLOW__CORE__DAGS_FOLDER="${OMAR_HOME}/omar_airflow/airflow-data/dags"
-export AIRFLOW__CORE__DAGS_FOLDER
-msg "dags_folder:" $AIRFLOW__CORE__DAGS_FOLDER
 
 #[core]
 echo -e "\n${green}[core]${nc}"
+
+# DAGS FOLDER
+AIRFLOW__CORE__DAGS_FOLDER="${HOME}/deploy-airflow-celery-ubuntu/dags"
+export AIRFLOW__CORE__DAGS_FOLDER
+msg "dags_folder:" $AIRFLOW__CORE__DAGS_FOLDER
+
+# PARALLELISM & MAX ACTIVE TASKS
+AIRFLOW__CORE__PARALLELISM=8
+AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG=4
+
+export AIRFLOW__CORE__PARALLELISM
+export AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG
+
+msg "paralelism:" "${AIRFLOW__CORE__PARALLELISM}"
+msg "max_active_tasks_per_dag:" "${AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG}"
 
 # EXECUTOR
 # AIRFLOW__CORE__EXECUTOR=LocalExecutor
@@ -85,9 +95,13 @@ echo -e "\n${green}[celery]${nc}"
 # broker_url = redis://redis:6379/0
 # result_backend = db+postgresql://postgres:airflow@postgres/airflow
 # NEW VALUES
-AIRFLOW__CELERY__BROKER_URL="redis://${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}/0"
+# AIRFLOW__CELERY__BROKER_URL="redis://${REDIS_USERNAME}:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB_NUMBER}"
+AIRFLOW__CELERY__BROKER_URL=$REDIS_CONN_STRING
+
 AIRFLOW__CELERY__RESULT_BACKEND="db+postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}${POSTGRES_EXTRAS}"
 export AIRFLOW__CELERY__BROKER_URL
 export AIRFLOW__CELERY__RESULT_BACKEND
 msg "broker_url" $AIRFLOW__CELERY__BROKER_URL
 msg "result_backend" $AIRFLOW__CELERY__RESULT_BACKEND
+
+echo -e "${green}--------------------------------------\n${nc}"
