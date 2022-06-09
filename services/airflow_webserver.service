@@ -1,5 +1,5 @@
 [Unit]
-Description=Airflow scheduler daemon
+Description=Airflow webserver daemon
 After=network.target
 
 [Service]
@@ -8,12 +8,12 @@ After=network.target
 User=airflow
 Group=airflow
 Type=simple
-StandardOutput=file:/var/log/airflow_scheduler_stdout.log
-StandardError=file:/var/log/airflow_scheduler_stderr.log
+StandardOutput=file:/var/log/airflow_webserver_stdout.log
+StandardError=file:/var/log/airflow_webserver_stderr.log
 Restart=on-failure
 # Restart=always
 RestartSec=10
-ExecStart=/bin/bash -c 'source /home/airflow/deploy-airflow-celery-ubuntu/services/airflow_scheduler.sh'
+ExecStart=/bin/bash -c 'source /home/airflow/deploy-airflow-celery-ubuntu/services/airflow_webserver.sh'
 
 [Install]
 WantedBy=multi-user.target

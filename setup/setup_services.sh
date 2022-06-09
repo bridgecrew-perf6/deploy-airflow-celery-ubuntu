@@ -18,12 +18,24 @@ function msg {
 
 ##-------------  START OF THE SCRIPT  --------------##
 
+# AIRFLOW SCHEDULER
 msg "Creating airflow scheduler service symbolic link"
 sudo ln -s /home/airflow/deploy-airflow-celery-ubuntu/services/airflow_scheduler.service /etc/systemd/system/airflow_scheduler.service
 
-msg "Restart service"
+msg "Restart scheduler service"
 sudo systemctl daemon-reload
 sudo systemctl restart airflow_scheduler.service
 
-msg "Service status"
+msg "Status scheduler service"
 systemctl status airflow_scheduler.service
+
+# AIRFLOW WEBSERVER
+msg "Creating airflow webserver service symbolic link"
+sudo ln -s /home/airflow/deploy-airflow-celery-ubuntu/services/airflow_webserver.service /etc/systemd/system/airflow_webserver.service
+
+msg "Restart webserver service"
+sudo systemctl daemon-reload
+sudo systemctl restart airflow_webserver.service
+
+msg "Status webserver service"
+systemctl status airflow_webserver.service
