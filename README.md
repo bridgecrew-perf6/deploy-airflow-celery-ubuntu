@@ -46,7 +46,8 @@ In a worker machine only celery worker service needed, just run
 
 ## For stoping, restarting, status and activating of systemd services 
 
-There are 4 services (airflow_<service_name>.service)
+There are 4 services (airflow_<service_name>.service), namely:
+
     - airflow_scheduler.service
     - airflow_webserver.service
     - airflow_flower.service
