@@ -30,14 +30,17 @@ AIRFLOW__CORE__DAGS_FOLDER="${HOME}/deploy-airflow-celery-ubuntu/dags"
 export AIRFLOW__CORE__DAGS_FOLDER
 msg "dags_folder:" $AIRFLOW__CORE__DAGS_FOLDER
 
-# PARALLELISM & MAX ACTIVE TASKS
-AIRFLOW__CORE__PARALLELISM=8
+# PARALLELISM & WORKER CONCURRENCY & MAX ACTIVE TASKS
+AIRFLOW__CORE__PARALLELISM=16
+AIRFLOW__CORE__WORKER_CONCURRENCY=8
 AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG=4
 
 export AIRFLOW__CORE__PARALLELISM
+export AIRFLOW__CORE__WORKER_CONCURRENCY
 export AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG
 
 msg "paralelism:" "${AIRFLOW__CORE__PARALLELISM}"
+msg "worker_concurrency:" "${AIRFLOW__CORE__WORKER_CONCURRENCY}"
 msg "max_active_tasks_per_dag:" "${AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG}"
 
 # EXECUTOR
@@ -71,13 +74,13 @@ echo -e "\n${green}[logging]${nc}"
 # base_log_folder = /home/luisposada/airflow/logs
 AIRFLOW__LOGGING__BASE_LOG_FOLDER="${AIRFLOW_HOME}/logs"
 export AIRFLOW__LOGGING__BASE_LOG_FOLDER
-msg "base_log_folder" $AIRFLOW__LOGGING__BASE_LOG_FOLDER
+msg "base_log_folder:" $AIRFLOW__LOGGING__BASE_LOG_FOLDER
 
 
 # dag_processor_manager_log_location = /home/luisposada/airflow/logs/dag_processor_manager/dag_processor_manager.log
 AIRFLOW__LOGGING__DAG_PROCESSOR_MANAGER_LOG_LOCATION="${AIRFLOW_HOME}/logs/dag_processor_manager/dag_processor_manager.log"
 export AIRFLOW__LOGGING__DAG_PROCESSOR_MANAGER_LOG_LOCATION
-msg "base_log_folder" $AIRFLOW__LOGGING__DAG_PROCESSOR_MANAGER_LOG_LOCATION
+msg "dag_processor_manager_log_location:" $AIRFLOW__LOGGING__DAG_PROCESSOR_MANAGER_LOG_LOCATION
 
 
 # [scheduler]
@@ -85,7 +88,7 @@ echo -e "\n${green}[scheduler]${nc}"
 # child_process_log_directory = /home/luisposada/airflow/logs/scheduler
 AIRFLOW__SCHEDULER__CHILD_PROCESS_LOG_DIRECTORY="${AIRFLOW_HOME}/logs/scheduler"
 export AIRFLOW__SCHEDULER__CHILD_PROCESS_LOG_DIRECTORY
-msg "child_process_log_directory" $AIRFLOW__SCHEDULER__CHILD_PROCESS_LOG_DIRECTORY
+msg "child_process_log_directory:" $AIRFLOW__SCHEDULER__CHILD_PROCESS_LOG_DIRECTORY
 
 #---------------------------------------
 # [celery]
@@ -101,7 +104,7 @@ AIRFLOW__CELERY__BROKER_URL=$REDIS_CONN_STRING
 AIRFLOW__CELERY__RESULT_BACKEND="db+postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}${POSTGRES_EXTRAS}"
 export AIRFLOW__CELERY__BROKER_URL
 export AIRFLOW__CELERY__RESULT_BACKEND
-msg "broker_url" $AIRFLOW__CELERY__BROKER_URL
-msg "result_backend" $AIRFLOW__CELERY__RESULT_BACKEND
+msg "broker_url:" $AIRFLOW__CELERY__BROKER_URL
+msg "result_backend:" $AIRFLOW__CELERY__RESULT_BACKEND
 
 echo -e "${green}--------------------------------------\n${nc}"
