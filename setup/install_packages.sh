@@ -44,6 +44,7 @@ sudo apt install curl -y || fail
 sudo apt install rsync -y || fail
 sudo apt install build-essential -y || fail
 sudo apt install apt-transport-https  || fail # Make sure the packages we will get from a repository are from the genuine source and signed by the Public key
+sudo apt install net-tools || fail
 
 
 
@@ -58,14 +59,14 @@ sudo apt install libffi-dev -y || fail # A Portable Foreign Function Interface L
 # sudo apt install apt-utils -y # less used command line utilities related to APT
 # sudo apt install locales -y # translations
 
-msg "Postgres"
-sudo apt install postgresql postgresql-contrib -y || fail
+# msg "Postgres"
+# sudo apt install postgresql postgresql-contrib -y || fail
 
-msg "Redis"
-sudo apt install redis-server -y || fail
+# msg "Redis"
+# sudo apt install redis-server -y || fail
 
-msg "Nginx"
-sudo apt install nginx -y || fail
+# msg "Nginx"
+# sudo apt install nginx -y || fail
 
 # not installed
 # sudo apt install psycopg2-binary -y # installed via pip

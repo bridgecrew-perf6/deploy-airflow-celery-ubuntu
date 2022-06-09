@@ -39,3 +39,15 @@ sudo systemctl restart airflow_webserver.service
 
 msg "Status webserver service"
 systemctl status airflow_webserver.service
+
+# FLOWER 
+msg "Creating airflow flower service symbolic link"
+sudo ln -s /home/airflow/deploy-airflow-celery-ubuntu/services/airflow_flower.service /etc/systemd/system/airflow_flower.service
+
+msg "Restart flower service"
+sudo systemctl daemon-reload
+sudo systemctl restart airflow_flower.service
+
+msg "Status flower service"
+systemctl status airflow_flower.service
+
