@@ -1,0 +1,21 @@
+[Unit]
+Description=Airflow scheduler daemon
+After=network.target
+# Requires=MLOPs_context.service
+
+[Service]
+# EnvironmentFile=/home/airflow/deploy-airflow-celery-ubuntu/secrets.sh
+# EnvironmentFile=/home/airflow/deploy-airflow-celery-ubuntu/env_vars.sh
+User=airflow
+Group=airflow
+Type=simple
+StandardOutput=file:/var/log/airflow_scheduler_stdout.log
+StandardError=file:/var/log/airflow_scheduler_stderr.log
+Restart=on-failure
+# Restart=always
+RestartSec=10
+ExecStart=/bin/bash -c 'source /home/airflow/deploy-airflow-celery-ubuntu/services/airflow_scheduler.sh'
+
+[Install]
+WantedBy=multi-user.target
+
