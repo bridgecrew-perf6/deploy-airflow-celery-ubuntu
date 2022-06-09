@@ -14,7 +14,7 @@ function msg {
   # echo -e "${green}$(date): ${yellow}$1${nc}"
   echo -e "${green}[$(date +"%Y/%m/%d - %H:%M:%S")] ${yellow}$1${nc}" # better date format
 }
-
+##-------------  HELPERS   --------------##
 
 ##-------------  START OF THE SCRIPT  --------------##
 

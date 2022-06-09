@@ -8,7 +8,7 @@ Disclaimer: This demo is only for educational purposes, this setup should not be
 
 ## As user "root"
 
-1. Connect to server with ssh root@host and clone the repo  `git clone https://github.com/felrobotics/deploy-airflow-celery-ubuntu.git`
+1. Connect to server with ssh root@host (put in host your machine ip or host url) and clone the repo  `git clone https://github.com/felrobotics/deploy-airflow-celery-ubuntu.git`
 2. Create user "airflow" by running the script setup/create_users.sh
 3. Logout root (not recommened to work as root user)
 
@@ -19,7 +19,8 @@ Disclaimer: This demo is only for educational purposes, this setup should not be
    
 ## Upload Secrets   
 
-1. Logout from server and run in your local machine the command: `rsync -e ssh secrets.sh  airflow@host:deploy-airflow-celery-ubuntu/`
+1. copy secrets_dummy.sh to secrets.sh and fill out the secrets or if you have your file in your local machine just upload it from
+your local machine running: `rsync -e ssh secrets.sh  airflow@host:deploy-airflow-celery-ubuntu/`
 
 ## Setup Python & Airflow
 
@@ -27,6 +28,39 @@ Disclaimer: This demo is only for educational purposes, this setup should not be
 2. Setup airflow database schema with setup/setup_schemas.sh
 3. Setup airflow db and users by running setup/setup_airflow
 
-## Launch Airflow
+## Setup Nginx for airflow webserver and flower
 
-1. run script launch_airflow.sh
+Disclaimer: This is only a demo, nginx reverse proxy will be working with minimum security
+- run script setup/nginx.sh
+
+
+## Setup Systemd Services for activating aiflow at restart and failure
+
+If you are in the master machine that will run the scheduler and webserver:
+
+- run script setup/setup_services.sh
+
+In a worker machine only celery worker service needed, just run
+
+-  setup/setup_worker_services.sh
+
+## For stoping, restarting, status and activating of systemd services 
+
+There are 4 services (airflow_<service_name>.service)
+    - airflow_scheduler.service
+    - airflow_webserver.service
+    - airflow_flower.service
+    - airflow_worker.service
+
+Start, restart, and stop: 
+
+- sudo systemctl start airflow_<service_name>.service  
+- sudo systemctl restart airflow_<service_name>.service
+- sudo systemctl stop airflow_<service_name>.service
+
+Status :
+- sudo systemctl stop airflow_<service_name>.service
+
+
+
+
