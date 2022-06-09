@@ -10,7 +10,7 @@ function msg {
 
 
 # LOAD SECRETS 
-source secrets.sh
+source /home/airflow/deploy-airflow-celery-ubuntu/secrets.sh
 
 echo -e "\n\n${green}--------------------------------------"
 echo -e "          AIRFLOW  env vars"
@@ -42,7 +42,7 @@ msg "max_active_tasks_per_dag:" "${AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG}"
 
 # EXECUTOR
 # AIRFLOW__CORE__EXECUTOR=LocalExecutor
-AIRFLOW__CORE__EXECUTOR=CeleryExecutor # CELERY
+AIRFLOW__CORE__EXECUTOR=CeleryExecutor
 export AIRFLOW__CORE__EXECUTOR
 msg "executor:" $AIRFLOW__CORE__EXECUTOR
 

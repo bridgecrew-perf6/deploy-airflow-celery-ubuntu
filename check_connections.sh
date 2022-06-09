@@ -9,7 +9,7 @@ yellow=$(echo -en '\033[00;33m')
 
 function msg {
   # echo -e "${green}$(date): ${yellow}$1${nc}"
-  echo -e "${green}[$(date +"%Y/%m/%d - %H:%M:%S")] ${yellow}$1${nc}"
+  echo -e "${green}[$(date +"%Y/%m/%d - %H:%M:%S")] ${yellow}$1${nc}" # better date format
 }
 
 source secrets.sh

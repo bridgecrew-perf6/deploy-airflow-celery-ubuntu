@@ -6,6 +6,7 @@ __pycache__/
 
 # Secrets 
 secrets.sh
+.vscode
 
 # C extensions
 *.so
