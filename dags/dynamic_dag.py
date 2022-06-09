@@ -16,8 +16,8 @@ def create_dag(dag_id, default_args, schedule):
         dag_id=dag_id,
         default_args=default_args,
         start_date=datetime(2022, 1, 1),
-        schedule_interval=conf["schedule_interval"],
-        catchup="catchup": False,
+        schedule_interval=schedule,
+        catchup=False,
     ) as dag:
         task_1 = BashOperator(task_id="task_1", bash_command="sleep 5")
         task_2 = BashOperator(task_id="task_2", bash_command="sleep 5")

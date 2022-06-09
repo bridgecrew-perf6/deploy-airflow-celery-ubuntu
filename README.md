@@ -60,7 +60,7 @@ Start, restart, and stop:
 - sudo systemctl stop airflow_<service_name>.service
 
 Status :
-- sudo systemctl stop airflow_<service_name>.service
+- sudo systemctl status airflow_<service_name>.service
 
 
 
