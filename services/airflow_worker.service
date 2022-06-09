@@ -1,0 +1,20 @@
+[Unit]
+Description=Airflow celery worker daemon
+After=network.target
+
+[Service]
+# EnvironmentFile=/home/airflow/deploy-airflow-celery-ubuntu/secrets.sh
+# EnvironmentFile=/home/airflow/deploy-airflow-celery-ubuntu/env_vars.sh
+User=airflow
+Group=airflow
+Type=simple
+StandardOutput=file:/var/log/airflow_worker_stdout.log
+StandardError=file:/var/log/airflow_worker_stderr.log
+Restart=on-failure
+# Restart=always
+RestartSec=10
+ExecStart=/bin/bash -c 'source /home/airflow/deploy-airflow-celery-ubuntu/services/airflow_worker.sh'
+
+[Install]
+WantedBy=multi-user.target
+
