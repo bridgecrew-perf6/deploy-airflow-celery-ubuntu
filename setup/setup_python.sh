@@ -12,13 +12,17 @@ function msg {
 }
 
 # SETUP PYTHON VIRTUAL ENV
-python3 -m venv ~/.env/airflow_env
+VIRT_ENV_FOLDER=$HOME/.env/ 
+
+# create virtual env
+python3 -m venv $VIRT_ENV_FOLDER/airflow_env
 
 msg "Environment: airflow_env activated"
-source ~/.env/airflow_env/bin/activate
+source $VIRT_ENV_FOLDER/airflow_env/bin/activate
 python_version=$(python --version)
 msg "Python Version: ${python_version}"
 
+# In case conda install needed:
 # ```bash
 # cd /tmp
 # mkdir -p miniconda && cd miniconda

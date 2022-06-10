@@ -1,16 +1,27 @@
-# HELPERS
+#!/bin/bash
+
+##-------------  HELPERS   --------------##
 # colors
 nc=$(echo -en '\033[0m')
 red=$(echo -en '\033[00;31m')
 green=$(echo -en '\033[00;32m')
 yellow=$(echo -en '\033[00;33m')
+
+# pretty printing
 function msg {
   echo -e "${yellow}$1 ${nc}$2"
 }
 
+# get current script path
+function curr_script_path {
+  echo -e "$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-$0}"; )" &> /dev/null && pwd 2> /dev/null; )"
+}
+
 
 # LOAD SECRETS 
-source /home/airflow/deploy-airflow-celery-ubuntu/secrets.sh
+PROJECT_ROOT=$(curr_script_path)
+source $PROJECT_ROOT/secrets.sh
+
 
 echo -e "\n\n${green}--------------------------------------"
 echo -e "          AIRFLOW  env vars"
@@ -26,7 +37,7 @@ msg "airflow_home:" $AIRFLOW_HOME
 echo -e "\n${green}[core]${nc}"
 
 # DAGS FOLDER
-AIRFLOW__CORE__DAGS_FOLDER="${HOME}/deploy-airflow-celery-ubuntu/dags"
+AIRFLOW__CORE__DAGS_FOLDER="${DAGS_FOLDER}"
 export AIRFLOW__CORE__DAGS_FOLDER
 msg "dags_folder:" $AIRFLOW__CORE__DAGS_FOLDER
 
