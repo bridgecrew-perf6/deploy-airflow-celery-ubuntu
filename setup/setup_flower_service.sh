@@ -16,14 +16,14 @@ function msg {
 }
 
 
-# WORKER
-msg "Creating airflow celery worker service symbolic link"
-sudo ln -s /home/airflow/deploy-airflow-celery-ubuntu/services/airflow_worker.service /etc/systemd/system/airflow_worker.service
+# FLOWER SERVICE
+msg "Creating airflow flower service symbolic link"
+sudo ln -s /home/airflow/deploy-airflow-celery-ubuntu/services/airflow_flower.service /etc/systemd/system/airflow_flower.service
 
-msg "Restart worker service"
+msg "Restart flower service"
 sudo systemctl daemon-reload
-sudo systemctl restart airflow_worker.service
+sudo systemctl restart airflow_flower.service
 
-msg "Status worker service"
-systemctl status airflow_worker.service
+msg "Status flower service"
+systemctl status airflow_flower.service
 

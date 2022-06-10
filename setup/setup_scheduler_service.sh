@@ -15,15 +15,16 @@ function msg {
   echo -e "${green}[$(date +"%Y/%m/%d - %H:%M:%S")] ${yellow}$1${nc}" # better date format
 }
 
+# AIRFLOW SCHEDULER SERVICE
+msg "Creating airflow scheduler service symbolic link"
+sudo ln -s /home/airflow/deploy-airflow-celery-ubuntu/services/airflow_scheduler.service /etc/systemd/system/airflow_scheduler.service
 
-# WORKER
-msg "Creating airflow celery worker service symbolic link"
-sudo ln -s /home/airflow/deploy-airflow-celery-ubuntu/services/airflow_worker.service /etc/systemd/system/airflow_worker.service
-
-msg "Restart worker service"
+msg "Restart scheduler service"
 sudo systemctl daemon-reload
-sudo systemctl restart airflow_worker.service
+sudo systemctl restart airflow_scheduler.service
 
-msg "Status worker service"
-systemctl status airflow_worker.service
+msg "Status scheduler service"
+systemctl status airflow_scheduler.service
+
+
 
