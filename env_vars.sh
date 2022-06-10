@@ -28,7 +28,7 @@ echo -e "          AIRFLOW  env vars"
 echo -e "--------------------------------------${nc}"
 
 # AIRFLOW HOME
-AIRFLOW_HOME="${HOME}/airflow"
+AIRFLOW_HOME="${AIRFLOW_HOME_FOLDER}"
 export AIRFLOW_HOME
 msg "airflow_home:" $AIRFLOW_HOME
 
