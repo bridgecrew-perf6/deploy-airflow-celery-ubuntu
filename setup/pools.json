@@ -1,0 +1,6 @@
+{
+    "resource_intensive_pool": {
+        "slots": 1,
+        "description": ""
+    }
+}
