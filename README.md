@@ -63,5 +63,12 @@ Status :
 - sudo systemctl status airflow_<service_name>.service
 
 
+## Setup of Pools 
+
+If you wish to run dags with different concurrency requirements you can create a pool
+e.g for dags with resource-intensive processes
+
+run the script to create a pool setup/setup_pools.sh
+
 
 
